@@ -1,11 +1,8 @@
-from django.db.models import CharField, EmailField, TextField
-from django.test.utils import ignore_warnings
-from django.utils.deprecation import RemovedInDjango51Warning
+from django.db import models
 
 __all__ = ["CICharField", "CIEmailField", "CIText", "CITextField"]
 
 
-# RemovedInDjango51Warning.
 class CIText:
     def get_internal_type(self):
         return "CI" + super().get_internal_type()
@@ -14,23 +11,13 @@ class CIText:
         return "citext"
 
 
-class CICharField(CIText, CharField):
+class CICharField(CIText, models.CharField):
+    pass
 
 
-    def __init__(self, *args, **kwargs):
-        with ignore_warnings(category=RemovedInDjango51Warning):
-            super().__init__(*args, **kwargs)
+class CIEmailField(CIText, models.EmailField):
+    pass
 
 
-class CIEmailField(CIText, EmailField):
-
-    def __init__(self, *args, **kwargs):
-        with ignore_warnings(category=RemovedInDjango51Warning):
-            super().__init__(*args, **kwargs)
-
-
-class CITextField(CIText, TextField):
-
-    def __init__(self, *args, **kwargs):
-        with ignore_warnings(category=RemovedInDjango51Warning):
-            super().__init__(*args, **kwargs)
+class CITextField(CIText, models.TextField):
+    pass
