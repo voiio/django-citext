@@ -2,9 +2,9 @@
 
 PostgreSQL CITEXT integration for Django.
 
-[![PyPi Version](https://img.shields.io/pypi/v/citext.svg)](https://pypi.python.org/pypi/citext/)
-[![Test Coverage](https://codecov.io/gh/voiio/citext/branch/main/graph/badge.svg)](https://codecov.io/gh/voiio/citext)
-[![GitHub License](https://img.shields.io/github/license/voiio/citext)](https://raw.githubusercontent.com/voiio/citext/master/LICENSE)
+[![PyPi Version](https://img.shields.io/pypi/v/django-citext.svg)](https://pypi.python.org/pypi/django-citext/)
+[![Test Coverage](https://codecov.io/gh/voiio/django-citext/branch/main/graph/badge.svg)](https://codecov.io/gh/voiio/django-citext)
+[![GitHub License](https://img.shields.io/github/license/voiio/django-citext)](https://raw.githubusercontent.com/voiio/django-citext/main/LICENSE)
 
 ## Setup
 
