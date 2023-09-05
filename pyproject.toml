@@ -1,0 +1,80 @@
+[build-system]
+requires = ["flit_core>=3.2", "flit_scm", "wheel"]
+build-backend = "flit_scm:buildapi"
+
+[project]
+name = "citext"
+authors = [
+  { name = "Rust Saiargaliev", email = "fly.amureki@gmail.com" },
+  { name = "Johannes Maron", email = "johannes@maron.family" },
+  { name = "Jörg Benesch", email = "benesch.joerg@gmail.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["PostgreSQL", "Django", "CITEXT", "Case Insensitive", "postgres"]
+dynamic = ["version", "description"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Programming Language :: Python",
+  "Environment :: Web Environment",
+  "License :: OSI Approved :: BSD License",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Database",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Framework :: Django",
+  "Framework :: Django :: 3.2",
+  "Framework :: Django :: 4.1",
+  "Framework :: Django :: 4.2",
+]
+requires-python = ">=3.10"
+dependencies = ["django", "psycopg"]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "pytest-cov",
+  "pytest-django",
+  "psycopg[binary]",
+]
+
+[project.urls]
+Project-URL = "https://github.com/voiio/citext"
+Changelog = "https://github.com/voiio/citext/releases"
+
+[tool.flit.module]
+name = "citext"
+
+[tool.setuptools_scm]
+write_to = "citext/_version.py"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov --tb=short -rxs"
+testpaths = ["tests"]
+DJANGO_SETTINGS_MODULE = "tests.testapp.settings"
+
+[tool.coverage.run]
+source = ["citext"]
+omit = ["citext/buildapi.py"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.isort]
+atomic = true
+line_length = 88
+known_first_party = "citext, tests"
+include_trailing_comma = true
+default_section = "THIRDPARTY"
+combine_as_imports = true
+
+[tool.pydocstyle]
+add_ignore = "D1"
