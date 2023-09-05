@@ -1,6 +1,6 @@
-# Django CITEXT
+# Django CIText
 
-PostgreSQL CITEXT integration for Django.
+PostgreSQL CIText integration for Django.
 
 [![PyPi Version](https://img.shields.io/pypi/v/django-citext.svg)](https://pypi.python.org/pypi/django-citext/)
 [![Test Coverage](https://codecov.io/gh/voiio/django-citext/branch/main/graph/badge.svg)](https://codecov.io/gh/voiio/django-citext)
@@ -50,6 +50,6 @@ def my_view(request, email):
 
 ## Credits
 
-Project is based on the Django's own CITEXT implementation,
+Project is based on the Django's own CIText implementation,
 which was removed in Django 5.0. Big thanks to the Django contributors
 for their excellent work.

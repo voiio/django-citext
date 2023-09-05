@@ -1,4 +1,4 @@
-"""PostgreSQL CITEXT integration for Django."""
+"""PostgreSQL CIText integration for Django."""
 
 from . import _version
 from .fields import *  # noqa
