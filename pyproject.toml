@@ -5,9 +5,9 @@ build-backend = "flit_scm:buildapi"
 [project]
 name = "django-citext"
 authors = [
-  { name = "Rust Saiargaliev", email = "fly.amureki@gmail.com" },
   { name = "Johannes Maron", email = "johannes@maron.family" },
-  { name = "Jörg Benesch", email = "benesch.joerg@gmail.com" }
+  { name = "Jörg Benesch", email = "benesch.joerg@gmail.com" },
+  { name = "Rust Saiargaliev", email = "fly.amureki@gmail.com" }
 ]
 readme = "README.md"
 license = { file = "LICENSE" }
