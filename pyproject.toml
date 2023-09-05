@@ -3,7 +3,7 @@ requires = ["flit_core>=3.2", "flit_scm", "wheel"]
 build-backend = "flit_scm:buildapi"
 
 [project]
-name = "citext"
+name = "django-citext"
 authors = [
   { name = "Rust Saiargaliev", email = "fly.amureki@gmail.com" },
   { name = "Johannes Maron", email = "johannes@maron.family" },
