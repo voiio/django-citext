@@ -1,5 +1,6 @@
 """PostgreSQL CIText integration for Django."""
 
+from . import baker_generators  # noqa
 from . import _version
 from .fields import *  # noqa
 from .operations import *  # noqa
