@@ -43,6 +43,7 @@ test = [
   "pytest",
   "pytest-cov",
   "pytest-django",
+  "model-bakery",
 ]
 psycopg2 = ["psycopg2-binary"]
 
@@ -64,7 +65,7 @@ DJANGO_SETTINGS_MODULE = "tests.testapp.settings"
 
 [tool.coverage.run]
 source = ["citext"]
-omit = ["citext/buildapi.py"]
+omit = ["citext/baker_generators.py"]
 
 [tool.coverage.report]
 show_missing = true
