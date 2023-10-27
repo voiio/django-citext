@@ -45,6 +45,7 @@ test = [
   "pytest-django",
 ]
 psycopg2 = ["psycopg2-binary"]
+bakery = ["model-bakery"]
 
 [project.urls]
 Project-URL = "https://github.com/voiio/citext"
@@ -64,7 +65,6 @@ DJANGO_SETTINGS_MODULE = "tests.testapp.settings"
 
 [tool.coverage.run]
 source = ["citext"]
-omit = ["citext/buildapi.py"]
 
 [tool.coverage.report]
 show_missing = true
