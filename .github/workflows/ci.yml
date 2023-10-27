@@ -69,9 +69,6 @@ jobs:
         extras:
           - ""
           - "bakery"
-        include:
-          - python-version: "3.x"
-            django-version: "latest"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
