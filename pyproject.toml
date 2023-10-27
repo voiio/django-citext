@@ -43,9 +43,9 @@ test = [
   "pytest",
   "pytest-cov",
   "pytest-django",
-  "model-bakery",
 ]
 psycopg2 = ["psycopg2-binary"]
+bakery = ["model-bakery"]
 
 [project.urls]
 Project-URL = "https://github.com/voiio/citext"
