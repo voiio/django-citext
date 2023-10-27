@@ -1,6 +1,5 @@
 from django.db import models
 
-from . import baker_generators  # noqa
 from . import lookups
 
 __all__ = ["CICharField", "CIEmailField", "CIText", "CITextField"]
