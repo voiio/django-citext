@@ -65,7 +65,6 @@ DJANGO_SETTINGS_MODULE = "tests.testapp.settings"
 
 [tool.coverage.run]
 source = ["citext"]
-omit = ["citext/baker_generators.py"]
 
 [tool.coverage.report]
 show_missing = true

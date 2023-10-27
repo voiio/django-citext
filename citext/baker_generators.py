@@ -7,10 +7,8 @@ https://github.com/model-bakers/model_bakery/
 try:
     from model_bakery import baker, random_gen
 except ImportError:
-    baker = None
-
-
-if baker:
+    pass
+else:
     baker.generators.add("citext.fields.CICharField", random_gen.gen_string)
     baker.generators.add("citext.fields.CIEmailField", random_gen.gen_email)
     baker.generators.add("citext.fields.CITextField", random_gen.gen_text)
