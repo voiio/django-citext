@@ -4,6 +4,7 @@ Extends model_bakery's generators to support citext fields.
 This logic is loaded only if package model_bakery is installed.
 https://github.com/model-bakers/model_bakery/
 """
+
 try:
     from model_bakery import baker, random_gen
 except ImportError:
