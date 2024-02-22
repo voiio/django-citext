@@ -66,6 +66,7 @@ jobs:
         django-version:
           # we don't need to support version that haven't deprecated CIText
           - "4.2"  # LTS
+          - "5.0"
         extras:
           - ""
           - "bakery"
