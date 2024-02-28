@@ -49,8 +49,8 @@ psycopg2 = ["psycopg2-binary"]
 bakery = ["model-bakery"]
 
 [project.urls]
-Project-URL = "https://github.com/voiio/citext"
-Changelog = "https://github.com/voiio/citext/releases"
+Project-URL = "https://github.com/voiio/django-citext"
+Changelog = "https://github.com/voiio/django-citext/releases"
 
 [tool.flit.module]
 name = "citext"
