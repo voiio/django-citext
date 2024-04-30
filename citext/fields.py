@@ -35,6 +35,3 @@ for field in CIText.__subclasses__():
         field.register_lookup(lookup)
 
     field.register_lookup(lookups.IsNull)
-
-
-from . import baker_generators  # noqa
