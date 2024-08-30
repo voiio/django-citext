@@ -45,6 +45,11 @@ test = [
   "pytest-cov",
   "pytest-django",
 ]
+lint = [
+  "black==24.8.0",
+  "pre-commit==3.8.0",
+  "ruff==0.6.3",
+]
 psycopg2 = ["psycopg2-binary"]
 bakery = ["model-bakery"]
 
@@ -70,13 +75,29 @@ source = ["citext"]
 [tool.coverage.report]
 show_missing = true
 
-[tool.isort]
-atomic = true
-line_length = 88
-known_first_party = "citext, tests"
-include_trailing_comma = true
-default_section = "THIRDPARTY"
-combine_as_imports = true
+[tool.ruff]
+src = ["emark", "tests"]
 
-[tool.pydocstyle]
-add_ignore = "D1"
+[tool.ruff.lint]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "S", # flake8-bandit
+    "D", # pydocstyle
+    "UP", # pyupgrade
+    "B", # flake8-bugbear
+    "C", # flake8-comprehensions
+]
+
+ignore = ["B904", "D1", "E501", "S101"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+split-on-trailing-comma = true
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+force-wrap-aliases = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
