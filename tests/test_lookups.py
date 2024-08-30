@@ -21,7 +21,7 @@ class CITextLookupTestMixin:
 
     def test_cast(self):
         models.TestModel.objects.create(text="SearchTerm")
-        qs = models.TestModel.objects.filter(**{"text__%s" % self.lookup: self.term})
+        qs = models.TestModel.objects.filter(**{f"text__{self.lookup}": self.term})
         assert qs.exists()
         assert f"WHERE {self.lhs} {self.operator} {self.rhs}" in str(qs.query)
 

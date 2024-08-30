@@ -1,6 +1,5 @@
-from django.db import models
-
 import citext
+from django.db import models
 
 
 class TestModel(models.Model):
