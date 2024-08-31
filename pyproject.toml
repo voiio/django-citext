@@ -91,7 +91,7 @@ select = [
     "C", # flake8-comprehensions
 ]
 
-ignore = ["B904", "D1", "E501", "S101"]
+ignore = ["B904", "D1", "D212", "E501", "S101"]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
