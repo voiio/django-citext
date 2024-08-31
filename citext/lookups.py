@@ -4,19 +4,19 @@ from django.db.models import Lookup, lookups
 class CompareCITextLookupMixin:
     def process_lhs(self, compiler, connection, lhs=None):
         lhs_sql, params = Lookup.process_lhs(self, compiler, connection, lhs)
-        return f"{lhs_sql}::citext", list(params)
+        return "%s::citext" % lhs_sql, list(params)
 
 
 class InsensitiveCompareCITextLookupMixin:
     def process_lhs(self, compiler, connection, lhs=None):
         lhs_sql, params = Lookup.process_lhs(self, compiler, connection, lhs)
-        return f"UPPER({lhs_sql})", list(params)
+        return "UPPER(%s)" % lhs_sql, list(params)
 
 
 class IsNull(lookups.IsNull):
     def process_lhs(self, compiler, connection, lhs=None):
         lhs_sql, params = Lookup.process_lhs(self, compiler, connection, lhs)
-        return f"{lhs_sql}::text", list(params)
+        return "%s::text" % lhs_sql, list(params)
 
 
 class Contains(CompareCITextLookupMixin, lookups.Contains):
