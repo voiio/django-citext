@@ -1,4 +1,5 @@
-"""Extends model_bakery's generators to support citext fields.
+"""
+Extends model_bakery's generators to support citext fields.
 
 This logic is loaded only if package model_bakery is installed.
 https://github.com/model-bakers/model_bakery/
