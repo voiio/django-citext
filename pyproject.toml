@@ -96,8 +96,9 @@ ignore = ["B904", "D1", "E501", "S101"]
 [tool.ruff.lint.isort]
 combine-as-imports = true
 split-on-trailing-comma = true
+known-first-party = ["citext", "tests"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 force-wrap-aliases = true
 
 [tool.ruff.lint.pydocstyle]
-convention = "google"
+convention = "pep257"
