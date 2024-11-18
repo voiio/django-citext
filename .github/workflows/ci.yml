@@ -82,4 +82,4 @@ jobs:
     - run: python -m pip install git+https://github.com/django/django.git@main#egg=django
       if: matrix.django-version == 'latest'
     - run: python -m pytest
-    - uses: codecov/codecov-action@v4
+    - uses: codecov/codecov-action@v5
