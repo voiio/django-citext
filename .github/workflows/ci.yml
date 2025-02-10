@@ -60,14 +60,18 @@ jobs:
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
         django-version:
           # we don't need to support version that haven't deprecated CIText
           - "4.2"  # LTS
           - "5.0"
-          - "latest"
         extras:
           - ""
           - "bakery"
+        include:
+          - python-version: "3.13"
+            django-version: "latest"
+            extras: "bakery"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
