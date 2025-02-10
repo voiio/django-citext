@@ -54,8 +54,11 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/django-citext
+    continue-on-error: ${{ matrix.is_latest_django }}
     strategy:
       matrix:
+        is_latest_django:
+          - false
         python-version:
           - "3.10"
           - "3.11"
@@ -72,6 +75,7 @@ jobs:
           - python-version: "3.13"
             django-version: "latest"
             extras: "bakery"
+            is_latest_django: true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
