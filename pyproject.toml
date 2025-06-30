@@ -48,7 +48,7 @@ test = [
 lint = [
   "black==25.1.0",
   "pre-commit==4.2.0",
-  "ruff==0.12.0",
+  "ruff==0.12.1",
 ]
 psycopg2 = ["psycopg2-binary"]
 bakery = ["model-bakery"]
