@@ -47,7 +47,7 @@ test = [
 ]
 lint = [
   "black==25.1.0",
-  "pre-commit==4.2.0",
+  "pre-commit==4.3.0",
   "ruff==0.12.7",
 ]
 psycopg2 = ["psycopg2-binary"]
