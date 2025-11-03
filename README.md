@@ -15,7 +15,7 @@ python3 -m pip install django-citext
 ```python
 # settings.py
 INSTALLED_APPS = [
-    'citext',
+    "citext",
     # ...
 ]
 ```
