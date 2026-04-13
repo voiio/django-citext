@@ -39,7 +39,7 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = [
   "django",
-  "psycopg>=3.1.8; extra != 'psycopg2'",
+  "psycopg>=3.2.13; extra != 'psycopg2'",
 ]
 
 [project.optional-dependencies]
