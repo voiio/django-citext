@@ -4,24 +4,67 @@ on:
     branches:
       - main
   pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   dist:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
         with:
-          python-version: "3.x"
-      - run: python -m pip install --upgrade pip build wheel twine
-      - run: python -m build --sdist --wheel
-      - run: python -m twine check dist/*
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          python-version: "3.15"
+      - run: uv build
+      - run: uv run --no-project --with twine twine check dist/*
       - uses: actions/upload-artifact@v7
         with:
           path: dist/*
   pytest:
+    continue-on-error: ${{ matrix.django-version == 'main' }}
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.11"
+          - "3.12"
+          - "3.13"
+          - "3.14"
+          - "3.15"
+        django-version:
+          - "5.2" # LTS
+          - "6.0"
+          - "6.1"
+        extras:
+          - "test"
+          - "test,bakery"
+        resolution:
+          - "highest"
+        exclude:
+          - python-version: "3.11"
+            django-version: "6.0"
+          - python-version: "3.11"
+            django-version: "6.1"
+        include:
+          - python-version: "3.11"
+            django-version: "5.2"
+            extras: "test,bakery"
+            resolution: "lowest-direct"
+          - python-version: "3.15"
+            django-version: "main"
+            extras: "test,bakery"
+            resolution: "highest"
     services:
       postgres:
-        image: postgres:latest
+        image: postgres:17
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -29,44 +72,28 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-    env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost/django-citext
-    continue-on-error: ${{ matrix.is-latest-django }}
-    strategy:
-      matrix:
-        is-latest-django:
-          - false
-        python-version:
-          - "3.10"
-          - "3.11"
-          - "3.12"
-          - "3.13"
-          - "3.14"
-        django-version:
-          # we don't need to support version that haven't deprecated CIText
-          - "4.2" # LTS
-          - "5.1"
-          - "5.2" # LTS
-        extras:
-          - ""
-          - "bakery"
-        include:
-          - python-version: "3.x"
-            django-version: "latest"
-            extras: "bakery"
-            is-latest-django: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python -m pip install .[test]
-      - run: python -m pip install .[${{ matrix.extras }}]
-        if: matrix.extras != ''
-      - run: python -m pip install django~=${{ matrix.django-version }}.0
-        if: matrix.django-version != 'latest'
-      - run: python -m pip install git+https://github.com/django/django.git@main#egg=django
-        if: matrix.django-version == 'latest'
-      - run: python -m pytest
+      - run: uv venv
+      - if: matrix.resolution == 'highest' && matrix.django-version != 'main'
+        run: uv pip install ".[${{ matrix.extras }}]" "django~=${{ matrix.django-version }}.0"
+      - if: matrix.django-version == 'main'
+        run: uv pip install ".[${{ matrix.extras }}]" "django @ git+https://github.com/django/django.git@main"
+      - if: matrix.resolution == 'lowest-direct'
+        run: |
+          uv pip install --resolution lowest-direct -r pyproject.toml --extra test --extra bakery "django~=${{ matrix.django-version }}.0"
+          uv pip install --no-deps .
+      - run: uv pip list
+      - run: uv run --no-project python -m pytest
       - uses: codecov/codecov-action@v7
+        with:
+          use_oidc: true
+          files: coverage.xml
+          fail_ci_if_error: true
+          flags: python-${{ matrix.python-version }}-django-${{ matrix.django-version }}-${{ matrix.resolution }}

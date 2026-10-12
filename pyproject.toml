@@ -26,30 +26,30 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Framework :: Django",
-  "Framework :: Django :: 4.2",
-  "Framework :: Django :: 5.1",
   "Framework :: Django :: 5.2",
+  "Framework :: Django :: 6.0",
+  "Framework :: Django :: 6.1",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dependencies = [
-  "django",
+  "django>=5.2.18",
   "psycopg>=3.2.13; extra != 'psycopg2'",
 ]
 
 [project.optional-dependencies]
 test = [
-  "pytest",
-  "pytest-cov",
-  "pytest-django",
+  "pytest>=9.0.3",
+  "pytest-cov>=6.0.0",
+  "pytest-django>=4.11.1",
 ]
 psycopg2 = ["psycopg2-binary"]
-bakery = ["model-bakery"]
+bakery = ["model-bakery>=1.20.5"]
 
 [project.urls]
 Project-URL = "https://github.com/voiio/django-citext"
@@ -62,8 +62,8 @@ name = "citext"
 write_to = "citext/_version.py"
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "--cov --tb=short -rxs"
+minversion = "9.0.3"
+addopts = "--cov --cov-report=xml --cov-report=term --tb=short -rxs"
 testpaths = ["tests"]
 DJANGO_SETTINGS_MODULE = "tests.testapp.settings"
 
