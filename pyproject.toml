@@ -49,7 +49,7 @@ test = [
   "pytest-django>=4.11.1",
 ]
 psycopg2 = ["psycopg2-binary"]
-bakery = ["model-bakery"]
+bakery = ["model-bakery>=1.20.5"]
 
 [project.urls]
 Project-URL = "https://github.com/voiio/django-citext"
